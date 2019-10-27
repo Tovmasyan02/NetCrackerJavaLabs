@@ -2,50 +2,136 @@ package com.netcrackerLab1.Lab1;
 import org.joda.time.*;
  
 public class Person {
+	/**
+	 * ID Пользователя
+	 */
 	private int ID;
+	/**
+	 * Имя Пользователя
+	 */
     private String Name;
+    /**
+	 * Фамилия Пользователя
+	 */
     private String Surname;
+    /**
+	 * Дата рождения год/месяц/день
+	 */
 	private LocalDate YourDate;
+	
+	/**
+	 * Конструтор без параметров 
+	 */
 	public Person() {}
-	public Person(int iD, String name, String surname, LocalDate yourDate) {
-		ID = iD;
+	
+	/**
+	 * Конструтор с 4 параметрами 
+	 * @param id
+	 *        id пользователя
+	 * @param name
+	 *         имя пользователя
+	 * @param surname 
+	 *        фамилия пользователя
+	 * @param yourDate 
+	 *        Дата рождения
+	 */
+	public Person(int id, String name, String surname, LocalDate yourDate) {
+		ID = id;
 		Name = name;
 		Surname = surname;
 		YourDate = yourDate;
 	}
 	
-	public Person(int iD, String name, String surname) {
-		ID = iD;
+	/**
+	 * Конструтор с 3 параметрами 
+	 * @param id
+	 *        id пользователя
+	 * @param name
+	 *         имя пользователя
+	 * @param surname 
+	 *        фамилия пользователя
+	 */
+	public Person(int id, String name, String surname) {
+		ID = id;
 		Name = name;
 		Surname = surname;
 	}
-	public Person(int iD){
-		ID = iD;
+	/**
+	 * Конструтор с 1 параметром 
+	 * @param id
+	 *        id пользователя
+	 */
+	public Person(int id){
+		ID = id;
 	}	
+	
+	/**
+	   Возвращает ID данного пользователя
+	   @return ID пользователя
+	 */
 	public int getID(){
 		return ID;
 	}
-	public void setID(int iD) {
-		ID = iD;
+	
+	/**
+	   Устанавливает ID данного пользователя
+	   @param id 
+	          id пользователя
+	 */
+	public void setID(int id) {
+		ID = id;
 	}
+	
+	/**
+	   Возвращает имя данного пользователя
+	 */
 	public String getName() {
 		return Name;
 	}
+	/**
+	    Установливает имя данного пользователя
+	    @param name 
+	           имя пользователя
+	 */
 	public void setName(String name) {
 		Name = name;
 	}
+	/**
+     Возвращает фамилия данного пользователя
+     @return фамилия
+    */
 	public String getSurname() {
 		return Surname;
 	}
+	/**
+      Устанавливает фамилия данного пользователя
+      @param surname 
+             фамилия
+    */
 	public void setSurname(String surname) {
 		Surname = surname;
 	}
+	/**
+     Устанавливает дату рождения данного пользователя
+     @return Дату
+    */
 	public LocalDate getYourDate() {
 		return YourDate;
 	}
+	
+	/**
+    Устанавливает дату рождения данного пользователя
+    @param yourDate
+           Дата рождения
+ */
 	public void setYourDate(LocalDate yourDate) {
 		YourDate = yourDate;
 	}	
+	
+	/**
+       Возвращает возраст пользователя
+       return возраст
+    */ 
 	public int getAge()
 	{
 		LocalDate now=LocalDate.now();

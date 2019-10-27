@@ -22,6 +22,13 @@ public class App
     	}
     	
     	
+    //	System.out.println(pr.nextCallIndex);
+    	for(Person persony:pr)
+    	{
+    		System.out.println(persony.getAge());
+    	}
+    	
+    	
         
     }
 }
