@@ -5,11 +5,11 @@ public class PersonRepasitory implements Iterator<Person>, Iterable<Person>{
 	/**
      массив для хранения экзмемпляров класса person
     */
-  private Person[] Persons;
+  private Person[] persons;
   /**
     
    */
-  private int Capacity=16;
+  private int capacity=16;
   
   /**
    Индекс следующей ячейки где должна программа добавить следю экземпляр при вызове 
@@ -28,7 +28,7 @@ public class PersonRepasitory implements Iterator<Person>, Iterable<Person>{
   */
   public Person next() {
 	  this.iteratorIndex++;
-	  return this.Persons[iteratorIndex-1];
+	  return this.persons[iteratorIndex-1];
 	  
   }
   
@@ -43,8 +43,6 @@ public class PersonRepasitory implements Iterator<Person>, Iterable<Person>{
 	  return false;
 	  
   }
-  
-  
   /**
    реализация метода iterator интерфейса Iterable
    @return возвращает итерируемый объект
@@ -62,7 +60,7 @@ public class PersonRepasitory implements Iterator<Person>, Iterable<Person>{
  */
   public PersonRepasitory()
   {
-	 this.Persons=new Person[Capacity];
+	 this.persons=new Person[capacity];
   }
   
   /**
@@ -72,10 +70,9 @@ public class PersonRepasitory implements Iterator<Person>, Iterable<Person>{
    
  */
   public PersonRepasitory(int capacity)
-  {
-	  
-	  this.Capacity=capacity;
-	  this.Persons=new Person[Capacity];
+  {  
+	  this.capacity=capacity;
+	  this.persons=new Person[capacity];
   }
   /**
    Возвращает размер коллекции
@@ -93,13 +90,13 @@ public class PersonRepasitory implements Iterator<Person>, Iterable<Person>{
  */
   public void add(Person person)
   {
-	  Persons[this.nextCallIndex]=person;
-	  if(++nextCallIndex>this.Capacity)
+	  persons[this.nextCallIndex]=person;
+	  if(++nextCallIndex>this.capacity)
 	  {
-		  this.Capacity+=(this.Capacity*0.75);
-		  Person[] arr=new Person[this.Capacity];
-		  this.copyArray(arr, this.Persons);
-		  this.Persons=arr;
+		  this.capacity+=(this.capacity*0.75);
+		  Person[] arr=new Person[this.capacity];
+		  this.copyArray(arr, this.persons);
+		  this.persons=arr;
 	  }
   }
   
@@ -115,7 +112,7 @@ public class PersonRepasitory implements Iterator<Person>, Iterable<Person>{
 	  Person p;
 	  try
 	  {
-		  p=Persons[index];
+		  p=persons[index];
 	  }
 	  catch(ArrayIndexOutOfBoundsException e)
 	  {
