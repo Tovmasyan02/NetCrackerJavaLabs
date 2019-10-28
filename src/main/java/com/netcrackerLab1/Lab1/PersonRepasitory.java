@@ -7,9 +7,9 @@ public class PersonRepasitory implements Iterator<Person>, Iterable<Person>{
     */
   private Person[] persons;
   /**
-    
+    ёмкость массива
    */
-  private int capacity=16;
+  public int capacity=16;
   
   /**
    Индекс следующей ячейки где должна программа добавить следю экземпляр при вызове 
@@ -90,14 +90,17 @@ public class PersonRepasitory implements Iterator<Person>, Iterable<Person>{
  */
   public void add(Person person)
   {
-	  persons[this.nextCallIndex]=person;
-	  if(++nextCallIndex>this.capacity)
+	  
+	  if(nextCallIndex>=this.capacity)
 	  {
 		  this.capacity+=(this.capacity*0.75);
 		  Person[] arr=new Person[this.capacity];
 		  this.copyArray(arr, this.persons);
 		  this.persons=arr;
 	  }
+	  
+	  persons[this.nextCallIndex]=person;
+	  nextCallIndex++;
   }
   
   /**
@@ -131,10 +134,13 @@ public class PersonRepasitory implements Iterator<Person>, Iterable<Person>{
  */
   private void copyArray(Person[] nextArray,Person[] previousArray )
   {
-    for(int i=0;i>previousArray.length;i++)
+    for(int i=0;i<previousArray.length;i++)
     {
     	nextArray[i]=previousArray[i];
+    //	System.out.println(nextArray[i]);
     }
+    
+    
   }
   
   

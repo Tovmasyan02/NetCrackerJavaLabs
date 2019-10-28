@@ -6,29 +6,26 @@ public class App
 {
     public static void main( String[] args )
     {
-    	LocalDate d1=new LocalDate(1999,10,27);
-    	LocalDate d2=new LocalDate(1949,5,6);
-    	Person p1=new Person();
-    	Person p2=new Person();
-    	p1.setYourDate(d1);
-    	p2.setYourDate(d2);
-    	PersonRepasitory pr=new PersonRepasitory();
-    	pr.add(p1);
-    	pr.add(p2);
+    	Person p1=new Person(1,"Nam1","Surname1",new LocalDate(1999,8,8),Gender.MALE);
+    	Person p2=new Person(2,"Nam2","Surname2",new LocalDate(1997,10,1),Gender.MALE);
+    	Person p3=new Person(3,"Nam3","Surname3",new LocalDate(1976,6,11),Gender.MALE);
+    	Person p4=new Person(4,"Nam4","Surname4",new LocalDate(1968,1,1),Gender.FEMALE);
+    	Person p5=new Person(5,"Nam5","Surname5",new LocalDate(1974,2,8),Gender.FEMALE);
+
+    	PersonRepasitory pr=new PersonRepasitory(4);
+       
+        pr.add(p1);
+        pr.add(p2);
+        pr.add(p3);
+        pr.add(p4);
+        pr.add(p5);
+        //System.out.println(pr.capacity); 
         
-    	for(Person personx:pr)
-    	{
-    		System.out.println(personx.getAge());
-    	}
-    	
-    	
-    //	System.out.println(pr.nextCallIndex);
-    	for(Person persony:pr)
-    	{
-    		System.out.println(persony.getAge());
-    	}
-    	
-    	
+        for(Person p:pr)
+        {
+        	System.out.println(p);
+        }
+        
         
     }
 }

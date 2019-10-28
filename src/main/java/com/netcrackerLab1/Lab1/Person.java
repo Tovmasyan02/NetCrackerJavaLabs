@@ -1,7 +1,7 @@
 package com.netcrackerLab1.Lab1;
 import org.joda.time.*;
  
-public class Person implements Comparable<Person>{
+public class Person implements Comparable<Person> {
 	/**
 	 * ID Пользователя
 	 */
