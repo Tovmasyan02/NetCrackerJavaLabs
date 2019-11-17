@@ -17,7 +17,7 @@ public class Person implements IPerson
    private BigDecimal Salary;
    
    /*
-    * Constructor sets values the fields - Id and FirstName
+    * Constructor sets values for fields - Id and FirstName
     * 
     * @param	id
     * 			Person id 
@@ -31,7 +31,7 @@ public class Person implements IPerson
    }
    
    /*
-    * Constructor sets values the fields - Id,FirstName,Birthdate
+    * Constructor sets values for fields - Id,FirstName,Birthdate
     * 
     * @param	id
     * 			Person id 

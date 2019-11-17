@@ -42,11 +42,12 @@ public class TestRepository  {
 	
 	
 	@Test
-	public void xxx()
+	public void testReadAllFromCSV()
 	{
-		Repository rep=Repository.readAllDataAtOnce("src\\main\\java\\resources\\persons.csv");
+		Repository rep=Repository.readAllDataFromCSV("src\\main\\java\\resources\\persons.csv");
 		Person p=(Person)rep.get(2);
-		System.out.print(p.getFirstName());
+		Assert.assertEquals("Aaleahya", p.getFirstName());
+		
 	}
 	@Test 
 	public void testAddIPerson() {

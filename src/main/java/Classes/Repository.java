@@ -172,35 +172,34 @@ public class Repository implements IRepository{
 	     return newrap;	}
 	
 	
-	public static Repository readAllDataAtOnce(String file) 
+	@SuppressWarnings("deprecation")
+	public static Repository readAllDataFromCSV(String path) 
 	{ 
 		Repository rep=new Repository();
 		try { 
-			FileReader filereader = new FileReader(file); 
-			CSVReader csvReader = new CSVReaderBuilder(filereader) 
-									.withSkipLines(1) 
-									.build(); 
-			List<String[]> allData = csvReader.readAll(); 
+			FileReader filereader = new FileReader(path); 
+			//CSVReader csvReader = new CSVReader(filereader,';','"',1); 
+			CSVReader reader = new CSVReader(filereader, ';');
+			List<String[]> allData = reader.readAll();
 			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("d.MM.yyyy");
-			for(int i=0;i<allData.size();i++)
-			{
-				String[] data=allData.get(i)[0].split(";");
+			for(int i=1;i<allData.size()-1;i++)
+			{	
 				Person newPerson=new Person(
-						Integer.parseInt(data[0]),
-						data[1],
-						Gender.mm(data[2]),
-						LocalDate.parse(data[3], dtf),
-						data[4],
-						Integer.parseInt(data[5])
+						Integer.parseInt(allData.get(i)[0]),
+						allData.get(i)[1],
+						Gender.mm(allData.get(i)[2]),
+						LocalDate.parse(allData.get(i)[3], dtf),
+						allData.get(i)[4],
+						Integer.parseInt(allData.get(i)[5])
 								);
-				rep.add(newPerson);
+				rep.add(newPerson);	
 			}
-			
-			
 		   } 
 		
 		catch (Exception e) { 
+			
 			e.printStackTrace(); 
+			e.getClass();
 		}
 		
 		return rep;

@@ -10,6 +10,6 @@ public enum Gender {
 		   return Gender.MALE;
 	   if(genderStr.toLowerCase()=="female")
 		   return Gender.FEMALE;
-	   else return null;
+	   else return Gender.FEMALE;
 	}
 }
