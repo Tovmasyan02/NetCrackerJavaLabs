@@ -4,7 +4,7 @@ public enum Gender {
 	MALE,
 	FEMALE;
 	
-	public static Gender mm(String genderStr)
+	public static Gender StringToGender(String genderStr)
 	{
 	   if(genderStr.toLowerCase()=="male")
 		   return Gender.MALE;

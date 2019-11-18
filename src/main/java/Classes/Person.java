@@ -17,7 +17,7 @@ public class Person implements IPerson
    private BigDecimal Salary;
    
    /*
-    * Constructor sets values for fields - Id and FirstName
+    * Конструктор с 2 параметрами 
     * 
     * @param	id
     * 			Person id 
@@ -31,7 +31,7 @@ public class Person implements IPerson
    }
    
    /*
-    * Constructor sets values for fields - Id,FirstName,Birthdate
+    * Конструктор с 3 параметрами
     * 
     * @param	id
     * 			Person id 
@@ -47,6 +47,21 @@ public class Person implements IPerson
 	   this.Birthdate=date;
    }
    
+   /*
+    * Конструктор с 6 параметрами
+    *   @param	id
+    * 			Person id 
+    *   @param	firstName
+    * 			Person firstName
+    *   @param	date 
+    * 			Person Birthday
+    *	@param gender
+    *          Person Gender
+    *   @param salary
+    *   	   Person Salary 
+    *	
+    * 
+    */
    public Person(int id,String firstName,Gender gender, LocalDate date,String div,int salary)
    {
 	   this.Id=id;
@@ -56,11 +71,20 @@ public class Person implements IPerson
 	  // this.Salary=salary;
    }
    
-   
-   //id;name;gender;BirtDate;Division;Salary
+   /*
+    * Метод возвращает возраст
+    */
+   public Integer getAge() {
+		LocalDate nowDate=LocalDate.now();
+		int age=nowDate.getYear()-this.Birthdate.getYear();
+		if(nowDate.getDayOfYear()<this.Birthdate.getDayOfYear())
+			age--;
+		return age;
+	}
+
    
    /*
-    * Method get value of the ID field
+    * Метод возвращает значение поля ID 
     * @return Person ID
     */
 	public Integer getId() {
@@ -68,7 +92,7 @@ public class Person implements IPerson
 	}
 	
 	 /*
-	   * Method set the ID field value
+	   * Метод устанавливает значение для поля ID
 	   * @param Person ID
 	   */
 	public void setId(Integer id) {
@@ -76,7 +100,7 @@ public class Person implements IPerson
 	}
 
 	 /*
-	    * Method get value of the FirstName field
+	    * Метод возвращает значение поля FirstName
 	    * @return Person FirstName
 	    */
 	public String getFirstName() {
@@ -84,7 +108,7 @@ public class Person implements IPerson
 	}
 
 	 /*
-	    * Method set the ID field value
+	    * Метод устанавливает значение для поля FirstName
 	    * @param Person FirstName
 	  */
 	public void setFirstName(String firstName) {
@@ -94,7 +118,7 @@ public class Person implements IPerson
 
 
 	/*
-	  * Method get value of the LastName field
+	  * Метод возвращает значение поля LastName
 	  * @return Person LastName
 	 */
 	public String getLastName() {
@@ -102,9 +126,9 @@ public class Person implements IPerson
 	}
 
 	 /*
-	    * Method set the lastName field value
-	    * @param	lastname
-	    * 			Person lastName
+	  * Метод устанавливает значение для поля LastName
+	  * @param	lastname
+	  * 		Person lastName
 	  */
 	public void setLastName(String lastName) {
 		this.LastName=lastName;
@@ -113,7 +137,7 @@ public class Person implements IPerson
 	
 
 	 /*
-	    * Method get value of the BirthDate field
+	    * Метод возвращает значение для поля BirthDate
 	    * @return Person Birthdate
 	  */
 	public LocalDate getBirthdate() {
@@ -121,7 +145,7 @@ public class Person implements IPerson
 	}
 
 	 /*
-	    * Method set the Birthdate field value
+	    * Метод устанавливает значение для поля BirthDate
 	    * @param	birthdate
 	    * 			Person Birthdate
 	  */
@@ -134,37 +158,57 @@ public class Person implements IPerson
 	    * @return Person age
 	    * 
 	  */
-	public Integer getAge() {
-		LocalDate nowDate=LocalDate.now();
-		int age=nowDate.getYear()-this.Birthdate.getYear();
-		if(nowDate.getDayOfYear()<this.Birthdate.getDayOfYear())
-			age--;
-		return age;
-	}
 
+
+	/*
+	 * Метод возвращает значение поля Gender
+	 * @return Person Gender
+	 */
 	public Gender getGender() {
 		return this.Genderx;
 	}
 
+	
+	/*
+	 * Метод устанавливает  значение для поля Gender
+	 * @param	gender
+	 * 			Person Gender
+	 */
 	public void setGender(Gender gender) {
 		this.Genderx=gender;
 		
 	}
 
+	/*
+	 * Метод возвращает значение для поля Division
+	 * @return IDivision
+	 */
 	public IDivision getDivision() {
 		
 		return new Division(this.Id,this.FirstName);
 	}
 
+	/*
+	 * Метод устанавливает значение для поля Division
+	 * @param division
+	 * 		  Division
+	 */
 	public void setDivision(IDivision division) {
 		 this.setId(division.getId());
 		 this.setFirstName(division.getName());    	
 	}
 
+	/*
+	 * Метод возвраещает значение поля Salary
+	 * @return Salary
+	 */
 	public BigDecimal getSalary() {
 		return this.Salary;
 	}
 
+	/*
+	 * Метод устанавливает значения для поля salary
+	 */
 	public void setSalary(BigDecimal salary) {
 		this.Salary=salary;
 		

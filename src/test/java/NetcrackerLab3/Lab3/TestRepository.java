@@ -69,6 +69,16 @@ public class TestRepository  {
 	{
 		myRepository.get(111);
 	}
+    
+    @Test
+    public void testDelete() {
+    	IPerson p2=myRepository.get(2);
+    	IPerson p3=myRepository.get(3);
+    	IPerson pd=myRepository.delete(2);
+    	Assert.assertEquals(p2, pd);
+    	Assert.assertEquals(8, myRepository.getSize());
+    	Assert.assertEquals(p3, myRepository.get(2));
+    }
 	
 	@Test  
 	public void testAddIPerson2()
