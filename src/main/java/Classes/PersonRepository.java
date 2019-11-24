@@ -10,26 +10,27 @@ import java.util.List;
 public class PersonRepository extends PersonRepositoryIO implements IPersonRepository {
 		
 	
-	    /*
-	     * ������ (IPerson)
+	    /**
+	     * массив (IPerson)
 	     */
 	
 		private IPerson[] persons;
-	    /*
-	     * ������� �������
-	     * ��������� �������=8
+	    /**
+	     * Ёмкость массива
+	     * Емкость по умолчанию=8
 	     * 
 	     */
 		public int capacity = 8;
-		/*
-		 * ���������� ��������� � ������� persons
+		
+		/**
+		 * количество элементов в массиве persons
 		 */
 		private int size=0;
 		
 
-		/*
-		 * ����������� ��� ���������� 
-		 * ������ ������ � ������ - 8
+		/**
+		 * Конструктор без параметров
+		 * создает массив с длинной- 8
 		 *    
 		 */
 		public PersonRepository()
@@ -38,9 +39,8 @@ public class PersonRepository extends PersonRepositoryIO implements IPersonRepos
 		}
 		
 		/**
-		 * ���������� � 1 ����������
-		 * ������������� �������� ��� ���� Capacity
-		 * create an Array of type IPerson with 
+		 * Конструктор с 1  параметром
+		 * Устанавливает значение для поля Capacity 
 		 */
 		public PersonRepository(int capacity)
 		{
@@ -48,8 +48,8 @@ public class PersonRepository extends PersonRepositoryIO implements IPersonRepos
 			persons=new IPerson[this.capacity];
 		}
 		
-		/*
-		 * ��������� 1 ������� � ���������
+		/**
+		 * Добавляет один элемент в коллекцию
 		 */
 		public void add(IPerson person) {
 			if(size==capacity)
@@ -65,13 +65,13 @@ public class PersonRepository extends PersonRepositoryIO implements IPersonRepos
 		}
 		
 		/**
-		 * ��������� 1 ������� � ��������� 
+		 *  Добавляет один элемент в коллекцию
 		 * @param index
-		 *        ������
+		 *        индекс
 		 * @param person
-		 *        ��������
+		 *        элемент
 		 * @throw IndexOutOfBoundsException
-		 *        ���� ������� ������ ��� ����� ���������
+		 *         если индкест больше чем длина коллекции
 		 */
 		public void add(int index, IPerson person) {	     
 			this.checkIndex(index);
@@ -89,8 +89,8 @@ public class PersonRepository extends PersonRepositoryIO implements IPersonRepos
 		    this.persons=newPersons;
 		}
 		
-		/*
-		 * ����� ���������
+		/**
+		 * длина коллекции
 		 */
 		public int getSize()
 		{
@@ -98,9 +98,9 @@ public class PersonRepository extends PersonRepositoryIO implements IPersonRepos
 		}
 
 		/*
-		 *
+		 * 
 		 * @throw IndexOutOfBoundsException
-		 *        ���� ������� ������ ��� ����� ���������
+		 *        если индекс больше чем длина коллекции
 		 */
 		public IPerson get(int index) {
 		    checkIndex(index);
@@ -108,10 +108,10 @@ public class PersonRepository extends PersonRepositoryIO implements IPersonRepos
 		}
 
 
-		/*
-		 * ������������� ������� �� �������
+		/**
+		 * устанавливает элемент по индексу
 		 * @throw IndexOutOfBoundsException
-		 *        ���� ������� ������ ��� ����� ���������
+		 *        если индекс больше чем длина коллекции
 		 * 
 		 */
 		public IPerson set(int index, IPerson person) {
@@ -121,8 +121,8 @@ public class PersonRepository extends PersonRepositoryIO implements IPersonRepos
 		}
 
 
-		/*
-		 * ���������� ������
+		/**
+		 * Возвращает список(List<IPerson>)
 		 */
 		public List<IPerson> toList() {
 			ArrayList<IPerson> PersonList=new ArrayList<IPerson>();
@@ -135,10 +135,10 @@ public class PersonRepository extends PersonRepositoryIO implements IPersonRepos
 		}
 		
 		
-		/*
-		 * ������� ������� �� ������
+		/**
+		 * удаляет элемент из списка
 		 * @throw IndexOutOfBoundsException
-		 *        ���� ������� ������ ��� ����� ���������
+		 *        если индкест больше чем длина коллекции
 		 * 
 		 */
 		public IPerson delete(int index) {
@@ -155,9 +155,8 @@ public class PersonRepository extends PersonRepositoryIO implements IPersonRepos
 			return p;
 		}
 		
-		
-		/*
-		 * ��������� ��������� 
+		/**
+		 * сортирует коллекцию 
 		 */
 		public void sortBy(Comparator<IPerson> personAgeComparator) {
 			
@@ -166,16 +165,17 @@ public class PersonRepository extends PersonRepositoryIO implements IPersonRepos
 		}
 		
 		
-		/*
-		 * ���������� ��� �������� ������� ������������� ������� ���������
+		/**
+		 * возвращает все элементы которые удовлетворяют условию предиката
 		 */
 		public IRepository<IPerson> searchBy(Predicate<IPerson> pred) {
 		
 			return PersonRepositorySearch.linearSearch(pred, this, this.size);
 		}
 		
-		/*
-		 * ���� ������ ������ ��� ����� ��������� �� ���������� ������
+		
+		/**
+		 * если индекс больше чем длина коллекции то возвращает ошибку
 		 */
 		private void checkIndex(int index)  
 		{
@@ -185,8 +185,9 @@ public class PersonRepository extends PersonRepositoryIO implements IPersonRepos
 			}
 		}
 		
-		/*
-		 * �������� �������� �� ������ ������� � ������
+		
+		/**
+		 * копирует элементы из одного массива в другую
 		 */
 		private void copyArray(IPerson[] nextArray, IPerson[] previousArray) {
 			for (int i = 0; i < previousArray.length; i++) {
