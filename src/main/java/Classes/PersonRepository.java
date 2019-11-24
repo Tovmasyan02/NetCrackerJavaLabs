@@ -3,14 +3,13 @@ import ru.vsu.lab.repository.*;
 import ru.vsu.lab.entities.*;
 import java.util.function.Predicate;
 
-import NetCracker_Lab3.PersonAgeComparator;
 
 import java.util.Comparator;
 import java.util.*;
 import java.util.List;
 
 
-public class PersonRepository implements IPersonRepository {
+public class PersonRepository extends PersonRepositoryIO implements IPersonRepository {
 		
 	
 	    /*

@@ -27,10 +27,7 @@ public class Sort {
 	
 	private static void swap(IPersonRepository rep, int index1, int index2) {
 		IPerson tmp = rep.get(index1);
-	   // IPerson tmp = array[index1];
 		rep.set(index1, rep.get(index2));
-	   // array[index1] = array[index2];
 		rep.set(index2,tmp);
-	   // array[index2] = tmp;
 	}
 }
