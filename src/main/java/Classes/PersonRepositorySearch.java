@@ -7,7 +7,7 @@ import ru.vsu.lab.repository.*;
 
 public class  PersonRepositorySearch {
 	
-    public static IPersonRepository BubbleSearch(Predicate<IPerson> pred,IPersonRepository rep,int size)
+    public static IPersonRepository linearSearch(Predicate<IPerson> pred,IPersonRepository rep,int size)
     {
     	PersonRepository newRep=new PersonRepository();
 		for(int i=0;i<size;i++)
@@ -17,8 +17,7 @@ public class  PersonRepositorySearch {
 				newRep.add(rep.get(i)); 
 			}
 		}
-		
-		return newRep;
-    	
+		return newRep;	
     }
+    
 }

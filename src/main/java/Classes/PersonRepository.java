@@ -161,7 +161,7 @@ public class PersonRepository extends PersonRepositoryIO implements IPersonRepos
 		 */
 		public void sortBy(Comparator<IPerson> personAgeComparator) {
 			
-			Sort.BubbleSort(personAgeComparator, this, this.size);
+			PersonRepositorySort.bubbleSort(personAgeComparator, this, this.size);
 			
 		}
 		
@@ -171,7 +171,7 @@ public class PersonRepository extends PersonRepositoryIO implements IPersonRepos
 		 */
 		public IRepository<IPerson> searchBy(Predicate<IPerson> pred) {
 		
-			return PersonRepositorySearch.BubbleSearch(pred, this, this.size);
+			return PersonRepositorySearch.linearSearch(pred, this, this.size);
 		}
 		
 		/*

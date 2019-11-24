@@ -1,14 +1,10 @@
 package NetCracker_Lab3;
 
-import static org.junit.Assert.*;
 
 import java.util.Comparator;
 import java.util.List;
 
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.*;
 import ru.vsu.lab.entities.*;
 import ru.vsu.lab.repository.IPersonRepository;
 import Classes.Person;
@@ -19,7 +15,7 @@ public class TestPersonRepository {
 private static PersonRepository myRepository;
 	
 	@Before
-	public void BeforeMethod()
+	public void beforeMethod()
 	{
 		Person p1=new Person(1,"Name1");
 		Person p2=new Person(2,"Name2");
@@ -49,7 +45,7 @@ private static PersonRepository myRepository;
 	{
 		
 		IPersonRepository rep=PersonRepository.readAllDataFromCSV("src\\main\\resources\\personsX.csv");
-		Person p=(Person)rep.get(2);
+		IPerson p=rep.get(2);
 		Assert.assertEquals("Aaleahya", p.getFirstName());
 		Assert.assertEquals("F", p.getDivision().getName());
 	}
@@ -62,7 +58,7 @@ private static PersonRepository myRepository;
 	@Test 
 	public void testGet()
 	{
-		Person p10=new Person(10,"Nam/e10");
+		Person p10=new Person(10,"Name10");
 		myRepository.add(p10);
 	    IPerson px=myRepository.get(9);
 	    Assert.assertEquals(px,p10);	
@@ -95,7 +91,7 @@ private static PersonRepository myRepository;
 	}
 	
 	@Test
-	public void TestGetSize()
+	public void testGetSize()
 	{
 		int res=myRepository.getSize();
 		Assert.assertEquals(res,9);		
@@ -149,8 +145,8 @@ class PersonAgeComparator implements Comparator<IPerson>{
 	  
     public int compare(IPerson aa, IPerson bb){
       
-    	Person a=(Person)aa;
-    	Person b=(Person)bb;
+    	IPerson a=aa;
+    	IPerson b=bb;
         if(a.getId()> b.getId())
             return 1;
         else if(a.getId()< b.getId())

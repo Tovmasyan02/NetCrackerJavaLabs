@@ -22,7 +22,6 @@ public class PersonRepositoryIO {
 	@SuppressWarnings("deprecation")
 	public static IPersonRepository readAllDataFromCSV(String path) 
 	{ 
-		
 		PersonRepository rep=new PersonRepository();
 		try
 		{
@@ -37,33 +36,27 @@ public class PersonRepositoryIO {
 					IDivision newDivision=null;
 					for(IDivision division:divisions)
 					{
-
 						if(division.getName().equals(allData.get(i)[4]))
 						{
 							newDivision=division;
 							break;
 						}
 					}
-					
 					if(newDivision==null)
 					{
 						newDivision=new Division(i,allData.get(i)[4]);
 						divisions.add(newDivision);
 					}
-
 					Person newPerson=new Person(
 							Integer.parseInt(allData.get(i)[0]),
 							allData.get(i)[1],
-							GenderUtils.StringToGender(allData.get(i)[2]),
+							GenderUtils.stringToGender(allData.get(i)[2]),
 							LocalDate.parse(allData.get(i)[3], dtf),
 							Integer.parseInt(allData.get(i)[5]),
 							newDivision
 									);
-
 					rep.add(newPerson);	
-
 				}
-				System.out.println(divisions.size());
 			   } 			
 			catch (Exception e) { 
 				e.printStackTrace(); 

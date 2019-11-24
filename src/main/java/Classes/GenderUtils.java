@@ -3,7 +3,7 @@ import ru.vsu.lab.entities.enums.*;
 
 public class GenderUtils {
 
-	public static Gender StringToGender(String genderStr)
+	public static Gender stringToGender(String genderStr)
 	{
 	   if(genderStr.toLowerCase()=="male")
 		   return Gender.MALE;

@@ -13,11 +13,8 @@ public class TestPerson {
 
 	@Test
 	public void testGetAge() {
-
 		Person p=new Person(111,"Namex",LocalDate.of(1999,11,8));
-
 		int age=p.getAge();
-
 		Assert.assertEquals(20,age);
 
 	}
