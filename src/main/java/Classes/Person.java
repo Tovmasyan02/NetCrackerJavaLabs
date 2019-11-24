@@ -12,9 +12,10 @@ public class Person implements IPerson {
 	   private LocalDate birthdate;
 	   private Gender genderx;
 	   private BigDecimal salary;
+	   private IDivision myDivision;
 	   
 	   /*
-	    * Конструктор с 2 параметрами 
+	    * пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ 2 пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ 
 	    * 
 	    * @param	id
 	    * 			Person id 
@@ -28,7 +29,7 @@ public class Person implements IPerson {
 	   }
 	   
 	   /*
-	    * Конструктор с 3 параметрами
+	    * пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ 3 пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	    * 
 	    * @param	id
 	    * 			Person id 
@@ -45,7 +46,7 @@ public class Person implements IPerson {
 	   }
 	   
 	   /*
-	    * Конструктор с 6 параметрами
+	    * пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ 6 пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	    *   @param	id
 	    * 			Person id 
 	    *   @param	firstName
@@ -59,17 +60,18 @@ public class Person implements IPerson {
 	    *	
 	    * 
 	    */
-	   public Person(int id,String firstName,Gender gender, LocalDate date,String div,int salary)
+	   public Person(int id,String firstName,Gender gender, LocalDate date,int salary,IDivision division)
 	   {
 		   this.id=id;
 		   this.firstName=firstName;
 		   this.birthdate=date;
 		   this.genderx=gender;
-		  // this.Salary=salary;
+		   this.myDivision=division;
+		  //.salary=salary;
 	   }
 	   
 	   /*
-	    * Метод возвращает возраст
+	    * пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	    */
 	   public Integer getAge() {
 			LocalDate nowDate=LocalDate.now();
@@ -81,7 +83,7 @@ public class Person implements IPerson {
 
 	   
 	   /*
-	    * Метод возвращает значение поля ID 
+	    * пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ ID 
 	    * @return Person ID
 	    */
 		public Integer getId() {
@@ -89,7 +91,7 @@ public class Person implements IPerson {
 		}
 		
 		 /*
-		   * Метод устанавливает значение для поля ID
+		   * пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ ID
 		   * @param Person ID
 		   */
 		public void setId(Integer id) {
@@ -97,7 +99,7 @@ public class Person implements IPerson {
 		}
 
 		 /*
-		    * Метод возвращает значение поля FirstName
+		    * пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ FirstName
 		    * @return Person FirstName
 		    */
 		public String getFirstName() {
@@ -105,7 +107,7 @@ public class Person implements IPerson {
 		}
 
 		 /*
-		    * Метод устанавливает значение для поля FirstName
+		    * пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ FirstName
 		    * @param Person FirstName
 		  */
 		public void setFirstName(String firstName) {
@@ -115,7 +117,7 @@ public class Person implements IPerson {
 
 
 		/*
-		  * Метод возвращает значение поля LastName
+		  * пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ LastName
 		  * @return Person LastName
 		 */
 		public String getLastName() {
@@ -123,7 +125,7 @@ public class Person implements IPerson {
 		}
 
 		 /*
-		  * Метод устанавливает значение для поля LastName
+		  * пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ LastName
 		  * @param	lastname
 		  * 		Person lastName
 		  */
@@ -134,7 +136,7 @@ public class Person implements IPerson {
 		
 
 		 /*
-		    * Метод возвращает значение для поля BirthDate
+		    * пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ BirthDate
 		    * @return Person Birthdate
 		  */
 		public LocalDate getBirthdate() {
@@ -142,7 +144,7 @@ public class Person implements IPerson {
 		}
 
 		 /*
-		    * Метод устанавливает значение для поля BirthDate
+		    * пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ BirthDate
 		    * @param	birthdate
 		    * 			Person Birthdate
 		  */
@@ -158,7 +160,7 @@ public class Person implements IPerson {
 		
 
 		/*
-		 * Метод возвращает значение поля Gender
+		 * пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ Gender
 		 * @return Person Gender
 		 */
 		public Gender getGender() {
@@ -167,7 +169,7 @@ public class Person implements IPerson {
 
 		
 		/*
-		 * Метод устанавливает  значение для поля Gender
+		 * пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ Gender
 		 * @param	gender
 		 * 			Person Gender
 		 */
@@ -177,27 +179,26 @@ public class Person implements IPerson {
 		}
 
 		/*
-		 * Метод возвращает значение для поля Division
+		 * пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ Division
 		 * @return IDivision
 		 */
 		public IDivision getDivision() {
 			
-			// брак
-			return new Division(this.id,this.firstName);
+			// пїЅпїЅпїЅпїЅ
+			return this.myDivision;
 		}
 
 		/*
-		 * Метод устанавливает значение для поля Division
+		 * пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ Division
 		 * @param division
 		 * 		  Division
 		 */
 		public void setDivision(IDivision division) {
-			 this.setId(division.getId());
-			 this.setFirstName(division.getName());    	
+			 this.myDivision=division; 	
 		}
 
 		/*
-		 * Метод возвраещает значение поля Salary
+		 * пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ Salary
 		 * @return Salary
 		 */
 		public BigDecimal getSalary() {
@@ -205,7 +206,7 @@ public class Person implements IPerson {
 		}
 
 		/*
-		 * Метод устанавливает значения для поля salary
+		 * пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ salary
 		 */
 		public void setSalary(BigDecimal salary) {
 			this.salary=salary;

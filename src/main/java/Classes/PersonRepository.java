@@ -2,8 +2,6 @@ package Classes;
 import ru.vsu.lab.repository.*;
 import ru.vsu.lab.entities.*;
 import java.util.function.Predicate;
-
-
 import java.util.Comparator;
 import java.util.*;
 import java.util.List;

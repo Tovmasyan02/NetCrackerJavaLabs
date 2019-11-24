@@ -49,9 +49,9 @@ private static PersonRepository myRepository;
 	{
 		
 		IPersonRepository rep=PersonRepository.readAllDataFromCSV("src\\main\\resources\\personsX.csv");
-		//Person p=(Person)rep.get(2);
-		//Assert.assertEquals("Aaleahya", p.getFirstName());
-		
+		Person p=(Person)rep.get(2);
+		Assert.assertEquals("Aaleahya", p.getFirstName());
+		Assert.assertEquals("F", p.getDivision().getName());
 	}
 	@Test 
 	public void testAddIPerson() {
