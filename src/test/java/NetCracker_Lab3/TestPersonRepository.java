@@ -1,6 +1,7 @@
 package NetCracker_Lab3;
 
 
+import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Comparator;
 import java.util.List;
@@ -44,7 +45,7 @@ private static Repository<IPerson> myRepository;
 	}
 	
 	
-	@Test 
+	@Test @Ignore
 	public void testReadAllFromCSV()
 	{
 		
@@ -125,21 +126,23 @@ private static Repository<IPerson> myRepository;
 	}
 	
 	@Test 
-	public void testSortBy() throws ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException
+	public void testSortBy() throws ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, IOException
 	{
 		Person zeroPerson=new Person(0,"Name0");
 		myRepository.add(5,zeroPerson); 
     	Repository<IPerson> x=Inject.<Repository<IPerson>>InjectMethod(myRepository);
 		x.sortBy(new PersonAgeComparator());
-		Assert.assertEquals(zeroPerson,myRepository.get(0));
+		Assert.assertEquals(1,x.get(1).getId().intValue());
+		
 		
 	}
 	
 	@Test 
-	public void testSearchBy()
+	public void testSearchBy() throws ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, IOException
 	{
-     Repository<IPerson> x=(Repository<IPerson>)myRepository.searchBy(personn -> personn.getId()>5);   
-     Assert.assertEquals(4,x.getSize());
+	 Repository<IPerson> x=Inject.<Repository<IPerson>>InjectMethod(myRepository);
+     Repository<IPerson> y=(Repository<IPerson>)x.searchBy(personn -> personn.getId()>5);  
+     Assert.assertEquals(4,y.getSize());
 		
 	}
 	

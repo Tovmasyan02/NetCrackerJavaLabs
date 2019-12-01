@@ -12,7 +12,8 @@ public class Repository<T>  implements IRepository<T> {
 		
 	     @InjectAnnotation
 	     private RepositorySort<T> sort;
-	     private RepositorySearch<T> search=new RepositoryLinearSearch<T>();
+	     @InjectAnnotation
+	     private RepositorySearch<T> search;
 	    /**
 	     * массив (IPerson)
 	     */

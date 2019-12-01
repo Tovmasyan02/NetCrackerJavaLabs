@@ -2,6 +2,8 @@ package NetCracker_Lab3.lab_3;
 
 
 import Classes.*;
+
+import java.io.IOException;
 import java.lang.String;
 import ru.vsu.lab.entities.*;
 import java.lang.reflect.*;
@@ -29,12 +31,14 @@ class PersonAgeComparator implements Comparator<IPerson>{
 
 public class App 
 {
-    public static void main( String[] args ) throws ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException
+    public static void main( String[] args ) throws ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, IOException
     {
-    	
+      	
     	Repository<IPerson> sjjj=new Repository<IPerson>();
     	Repository<IPerson> x=Inject.<Repository<IPerson>>InjectMethod(sjjj);
     	x.sortBy(new PersonAgeComparator());
-    	System.out.println("Xxx");
+    	
+    	//String x=Inject.readFile("Classes.Search", "src\\main\\resources\\InjectFile.txt");
+    	//System.out.println(x);
     }
 }
