@@ -1,18 +1,22 @@
 package NetCracker_Lab3;
 
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Comparator;
 import java.util.List;
 
 import org.junit.*;
 import ru.vsu.lab.entities.*;
 import ru.vsu.lab.repository.IPersonRepository;
+import ru.vsu.lab.repository.IRepository;
+import Classes.Inject;
 import Classes.Person;
-import Classes.PersonRepository;
+import Classes.PersonRepositoryIO;
+import Classes.Repository;
 
 public class TestPersonRepository {
 
-private static PersonRepository myRepository;
+private static Repository<IPerson> myRepository;
 	
 	@Before
 	public void beforeMethod()
@@ -26,7 +30,7 @@ private static PersonRepository myRepository;
 		Person p7=new Person(7,"Name7");
 		Person p8=new Person(8,"Name8");
 		Person p9=new Person(9,"Name9");
-		PersonRepository r=new PersonRepository();
+		Repository<IPerson> r=new Repository<IPerson>();
 		r.add(p1);
 		r.add(p2);
 		r.add(p3);
@@ -40,15 +44,16 @@ private static PersonRepository myRepository;
 	}
 	
 	
-	@Test
+	@Test 
 	public void testReadAllFromCSV()
 	{
 		
-		IPersonRepository rep=PersonRepository.readAllDataFromCSV("src\\main\\resources\\personsX.csv");
+		IRepository<IPerson> rep=PersonRepositoryIO.readAllDataFromCSV("src\\main\\resources\\personsX.csv");
 		IPerson p=rep.get(2);
 		Assert.assertEquals("Aaleahya", p.getFirstName());
 		Assert.assertEquals("F", p.getDivision().getName());
 	}
+	
 	@Test 
 	public void testAddIPerson() {
         int size=myRepository.getSize();
@@ -120,11 +125,12 @@ private static PersonRepository myRepository;
 	}
 	
 	@Test 
-	public void testSortBy()
+	public void testSortBy() throws ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException
 	{
 		Person zeroPerson=new Person(0,"Name0");
-		myRepository.add(5,zeroPerson);
-		myRepository.sortBy(new PersonAgeComparator());
+		myRepository.add(5,zeroPerson); 
+    	Repository<IPerson> x=Inject.<Repository<IPerson>>InjectMethod(myRepository);
+		x.sortBy(new PersonAgeComparator());
 		Assert.assertEquals(zeroPerson,myRepository.get(0));
 		
 	}
@@ -132,8 +138,7 @@ private static PersonRepository myRepository;
 	@Test 
 	public void testSearchBy()
 	{
-     PersonRepository x=(PersonRepository)myRepository.searchBy(personn -> personn.getId()>5);
-     
+     Repository<IPerson> x=(Repository<IPerson>)myRepository.searchBy(personn -> personn.getId()>5);   
      Assert.assertEquals(4,x.getSize());
 		
 	}

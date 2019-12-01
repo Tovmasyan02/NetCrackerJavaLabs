@@ -15,7 +15,7 @@ public class Person implements IPerson {
 	   private IDivision myDivision;
 	   
 	   /**
-	    * Конструктор с 2  параметрами 
+	    * Конструктор 
 	    * 
 	    * @param	id
 	    * 			Person id 
@@ -29,7 +29,7 @@ public class Person implements IPerson {
 	   }
 	   
 	   /**
-	    * Конструктор с 3 параметрами
+	    * Конструктор 
 	    * 
 	    * @param	id
 	    * 			Person id 
@@ -46,7 +46,7 @@ public class Person implements IPerson {
 	   }
 	   
 	   /**
-	    * Конструктор с 6 параметрами
+	    * Конструктор 
 	    *   @param	id
 	    * 			Person id 
 	    *   @param	firstName
@@ -83,7 +83,6 @@ public class Person implements IPerson {
 
 	   
 	   /**
-	    * Метод возращает значение поля ID 
 	    * 	@return Person ID
 	    */
 		public Integer getId() {
@@ -91,7 +90,6 @@ public class Person implements IPerson {
 		}
 		
 		 /**
-		   * Устанавливает значение для поля ID
 		   *	 @param Person ID
 		   */
 		public void setId(Integer id) {
@@ -99,7 +97,6 @@ public class Person implements IPerson {
 		}
 
 		 /**
-		    * Метод возращает значение поля FirstName
 		    * 	 @return Person FirstName
 		    */
 		public String getFirstName() {
@@ -107,7 +104,6 @@ public class Person implements IPerson {
 		}
 
 		 /**
-		  * Метод устанавливает значение для поля FirstName
 		  * 	@param Person FirstName
 		  */
 		public void setFirstName(String firstName) {
@@ -117,7 +113,6 @@ public class Person implements IPerson {
 
 
 		/**
-		  *  Метод возращает значение поля LastName
 		  * 	@return Person LastName
 		 */
 		public String getLastName() {
@@ -125,7 +120,6 @@ public class Person implements IPerson {
 		}
 
 		 /**
-		  * Метод устанавливает значение для поля LastName
 		  * 	@param	lastname
 		  * 		Person lastName
 		  */
@@ -136,7 +130,6 @@ public class Person implements IPerson {
 		
 
 		 /*
-		  *  Метод возращает значение поля BirthDate
 		   * 	@return Person Birthdate
 		  */
 		public LocalDate getBirthdate() {
@@ -144,23 +137,15 @@ public class Person implements IPerson {
 		}
 
 		 /**
-		    * Метод устанавливает значение для поля BirthDate
 		    * 	@param	birthdate
-		    * 			Person Birthdate
+		    * 			Person birthdate
 		  */
 		public void setBirthdate(LocalDate birthdate) {
 			this.birthdate=birthdate;
 		}
-
-		 /**
-		    * Method return the age of a person
-		    * @return Person age
-		    * 
-		  */
 		
 
 		/**
-		 *  Метод возращает значение поля Gender
 		 * @return Person Gender
 		 */
 		public Gender getGender() {
@@ -169,7 +154,6 @@ public class Person implements IPerson {
 
 		
 		/**
-		 * Метод устанавливает значение для поля Gender
 		 * @param	gender
 		 * 			Person Gender
 		 */
@@ -179,8 +163,7 @@ public class Person implements IPerson {
 		}
 
 		/**
-		 *  Метод возращает значение поля Division
-		 * 		@return IDivision
+		 * 		@return Person division
 		 */
 		public IDivision getDivision() {
 			
@@ -189,7 +172,6 @@ public class Person implements IPerson {
 		}
 
 		/**
-		 *  Метод устанавливает значение для поля Division
 		 * @param division
 		 * 		  Division
 		 */
@@ -198,7 +180,6 @@ public class Person implements IPerson {
 		}
 
 		/**
-		 *  Метод возращает значение поля Salary
 		 * @return Salary
 		 */
 		public BigDecimal getSalary() {
@@ -206,7 +187,8 @@ public class Person implements IPerson {
 		}
 
 		/**
-		 * Метод устанавливает значение для поля salary
+		 * @param Salary
+		 * 		  Person salaray
 		 */
 		public void setSalary(BigDecimal salary) {
 			this.salary=salary;

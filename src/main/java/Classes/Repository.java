@@ -5,16 +5,19 @@ import java.util.function.Predicate;
 import java.util.Comparator;
 import java.util.*;
 import java.util.List;
+import Annotations.InjectAnnotation;
 
 
-public class PersonRepository extends PersonRepositoryIO implements IPersonRepository {
+public class Repository<T>  implements IRepository<T> {
 		
-	
+	     @InjectAnnotation
+	     private RepositorySort<T> sort;
+	     private RepositorySearch<T> search=new RepositoryLinearSearch<T>();
 	    /**
 	     * массив (IPerson)
 	     */
-	
-		private IPerson[] persons;
+
+		private Object[] persons;
 	    /**
 	     * Ёмкость массива
 	     * Емкость по умолчанию=8
@@ -29,33 +32,31 @@ public class PersonRepository extends PersonRepositoryIO implements IPersonRepos
 		
 
 		/**
-		 * Конструктор без параметров
 		 * создает массив с длинной- 8
 		 *    
 		 */
-		public PersonRepository()
+		public Repository()
 		{
-			persons=new IPerson[capacity];
+			persons=new Object[capacity];
 		}
 		
 		/**
-		 * Конструктор с 1  параметром
 		 * Устанавливает значение для поля Capacity 
 		 */
-		public PersonRepository(int capacity)
+		public Repository(int capacity)
 		{
 			this.capacity=capacity;
-			persons=new IPerson[this.capacity];
+			persons=new Object[this.capacity];
 		}
 		
 		/**
 		 * Добавляет один элемент в коллекцию
 		 */
-		public void add(IPerson person) {
+		public void add(T person) {
 			if(size==capacity)
 			{ 
 			  this.capacity*=2;
-			  IPerson[] newPersons=new IPerson[this.capacity];
+			  Object[] newPersons=new Object[this.capacity];
 			  this.copyArray(newPersons,this.persons);
 			  this.persons=newPersons;
 			}
@@ -73,9 +74,9 @@ public class PersonRepository extends PersonRepositoryIO implements IPersonRepos
 		 * @throw IndexOutOfBoundsException
 		 *         если индкест больше чем длина коллекции
 		 */
-		public void add(int index, IPerson person) {	     
+		public void add(int index, T person) {	     
 			this.checkIndex(index);
-			IPerson[] newPersons=new IPerson[this.capacity+5];
+			Object[] newPersons=new Object[this.capacity+5];
 		    for(int i=0;i<index;i++)
 		    {
 		    	newPersons[i]=this.persons[i];
@@ -98,13 +99,19 @@ public class PersonRepository extends PersonRepositoryIO implements IPersonRepos
 		}
 
 		/*
-		 * 
 		 * @throw IndexOutOfBoundsException
 		 *        если индекс больше чем длина коллекции
 		 */
-		public IPerson get(int index) {
+		
+		@SuppressWarnings("unchecked")
+		private T getX(int index)
+		{
+			return (T)this.persons[index];
+		}
+		
+		public T get(int index) {
 		    checkIndex(index);
-			return persons[index];
+				return this.getX(index);
 		}
 
 
@@ -114,7 +121,7 @@ public class PersonRepository extends PersonRepositoryIO implements IPersonRepos
 		 *        если индекс больше чем длина коллекции
 		 * 
 		 */
-		public IPerson set(int index, IPerson person) {
+		public T set(int index, T person) {
 			this.checkIndex(index);
 			this.persons[index]=person;
 			return person;
@@ -124,11 +131,11 @@ public class PersonRepository extends PersonRepositoryIO implements IPersonRepos
 		/**
 		 * Возвращает список(List<IPerson>)
 		 */
-		public List<IPerson> toList() {
-			ArrayList<IPerson> PersonList=new ArrayList<IPerson>();
+		public List<T> toList() {
+			ArrayList<T> PersonList=new ArrayList<T>();
 			for(int i=0;i<this.size;i++)
 			{
-				PersonList.add(this.persons[i]);
+				PersonList.add(this.getX(i));
 			}
 			
 			return PersonList;
@@ -141,42 +148,20 @@ public class PersonRepository extends PersonRepositoryIO implements IPersonRepos
 		 *        если индкест больше чем длина коллекции
 		 * 
 		 */
-		public IPerson delete(int index) {
+		public T delete(int index) {
 			this.checkIndex(index);
-			IPerson[] newRep=new IPerson[this.capacity];
+			Object[] newRep=new Object[this.capacity];
 			for(int i=0;i<index;i++)
 				newRep[i]=this.persons[i];
 			for(int i=index;i<this.size-1;i++)
 				newRep[i]=this.persons[i+1];
-			IPerson p=this.persons[index];
+			T p=this.getX(index);
 			this.persons=newRep;
 			size--;
 			
 			return p;
 		}
 		
-		/**
-		 * сортирует коллекцию 
-		 */
-		public void sortBy(Comparator<IPerson> personAgeComparator) {
-			
-			PersonRepositorySort.bubbleSort(personAgeComparator, this, this.size);
-			
-		}
-		
-		
-		/**
-		 * возвращает все элементы которые удовлетворяют условию предиката
-		 */
-		public IRepository<IPerson> searchBy(Predicate<IPerson> pred) {
-		
-			return PersonRepositorySearch.linearSearch(pred, this, this.size);
-		}
-		
-		
-		/**
-		 * если индекс больше чем длина коллекции то возвращает ошибку
-		 */
 		private void checkIndex(int index)  
 		{
 			if(index>this.size)
@@ -189,21 +174,25 @@ public class PersonRepository extends PersonRepositoryIO implements IPersonRepos
 		/**
 		 * копирует элементы из одного массива в другую
 		 */
-		private void copyArray(IPerson[] nextArray, IPerson[] previousArray) {
+		private void copyArray(Object[] nextArray, Object[] previousArray) {
 			for (int i = 0; i < previousArray.length; i++) {
 				nextArray[i] = previousArray[i];
 				
 			}
 		}
+
+		public IRepository<T> searchBy(Predicate<T> pred) {
 		
-		@Override
-		public Object clone(){
-		     PersonRepository newrap=new PersonRepository(this.capacity);
-		     for(int i=0;i<size;i++)
-		     {
-		    	 newrap.add(this.persons[i]);
-		     }
-		     return newrap;	
-		     }
+			return this.search.Search(pred, this, this.size);
 		
+		}
+
+		public void sortBy(Comparator<T> comp) {
+			//this.sort=(RepositorySort<T>)this.sort;
+			System.out.println(this.sort.getClass().getTypeName());
+			this.sort.Sort(comp, this, this.size);
+			
+		}
+		
+	
 }

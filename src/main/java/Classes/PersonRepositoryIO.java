@@ -1,6 +1,7 @@
 package Classes;
 
 import ru.vsu.lab.entities.IDivision;
+
 import ru.vsu.lab.repository.*;
 import ru.vsu.lab.entities.*;
 import com.opencsv.*;
@@ -9,20 +10,13 @@ import java.util.*;
 import java.util.stream.Stream;
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDate;
-public class PersonRepositoryIO {
-
-	/**
-	 * ������ ��� ������ �� CSV ����� ������� Repository, ��������� � ����������.
-
-	 * 	
-	 *  */
-	
+public class PersonRepositoryIO<T> {
 	
 
 	@SuppressWarnings("deprecation")
-	public static IPersonRepository readAllDataFromCSV(String path) 
+	public static IRepository<IPerson> readAllDataFromCSV(String path) 
 	{ 
-		PersonRepository rep=new PersonRepository();
+		Repository<IPerson> rep=new Repository<IPerson>();
 		try
 		{
 			FileReader filereader = new FileReader(path); 

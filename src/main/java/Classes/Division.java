@@ -7,6 +7,10 @@ public class Division implements IDivision {
 	private Integer id;
 	private String name;
 	
+	public Division(String x)
+	{
+		this.name=x;
+	}
 	public Division(Integer id,String Name)
 	{
 		this.id=id;
