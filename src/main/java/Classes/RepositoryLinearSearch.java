@@ -7,9 +7,9 @@ import ru.vsu.lab.repository.*;
 
 public class  RepositoryLinearSearch<T> extends RepositorySearch<T> {
 	
-    public  Repository<T> Search(Predicate<T> pred,Repository<T> rep,int size)
+    public  IRepository<T> Search(Predicate<T> pred,IRepository<T> rep,int size)
     {
-    	Repository<T> newRep=new Repository<T>();
+    	IRepository<T> newRep=new Repository<T>();
 		for(int i=0;i<size;i++)
 		{
 			if(pred.test(rep.get(i)))

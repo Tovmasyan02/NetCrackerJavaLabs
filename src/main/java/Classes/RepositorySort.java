@@ -1,8 +1,8 @@
 package Classes;
-
+import ru.vsu.lab.repository.*;
 import java.util.Comparator;
 
-public abstract class RepositorySort<T> {
+public interface RepositorySort<T> {
 	
-	public abstract Repository<T> Sort(Comparator<T> comparator,Repository<T> rep,int size);
+	public abstract IRepository<T> Sort(Comparator<T> comparator,IRepository<T> rep,int size);
 }

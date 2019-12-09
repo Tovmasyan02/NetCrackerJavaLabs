@@ -6,6 +6,7 @@ import ru.vsu.lab.repository.*;
 import ru.vsu.lab.entities.*;
 import com.opencsv.*;
 import java.io.FileReader;
+import java.math.BigDecimal;
 import java.util.*;
 import java.util.stream.Stream;
 import java.time.format.DateTimeFormatter;
@@ -16,7 +17,7 @@ public class PersonRepositoryIO<T> {
 	@SuppressWarnings("deprecation")
 	public static IRepository<IPerson> readAllDataFromCSV(String path) 
 	{ 
-		Repository<IPerson> rep=new Repository<IPerson>();
+		IRepository<IPerson> rep=new Repository<IPerson>();
 		try
 		{
 			FileReader filereader = new FileReader(path); 
@@ -46,7 +47,7 @@ public class PersonRepositoryIO<T> {
 							allData.get(i)[1],
 							GenderUtils.stringToGender(allData.get(i)[2]),
 							LocalDate.parse(allData.get(i)[3], dtf),
-							Integer.parseInt(allData.get(i)[5]),
+							new BigDecimal((allData.get(i)[5])),
 							newDivision
 									);
 					rep.add(newPerson);	

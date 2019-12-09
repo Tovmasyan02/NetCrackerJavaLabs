@@ -60,14 +60,14 @@ public class Person implements IPerson {
 	    *	
 	    * 
 	    */
-	   public Person(int id,String firstName,Gender gender, LocalDate date,int salary,IDivision division)
+	   public Person(int id,String firstName,Gender gender, LocalDate date,BigDecimal salary,IDivision division)
 	   {
 		   this.id=id;
 		   this.firstName=firstName;
 		   this.birthdate=date;
 		   this.genderx=gender;
 		   this.myDivision=division;
-		  //.salary=salary;
+		   this.salary=salary;
 	   }
 	   
 	   /**

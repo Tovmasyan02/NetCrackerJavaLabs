@@ -4,11 +4,11 @@ import java.util.Comparator;
 import ru.vsu.lab.entities.IPerson;
 import  ru.vsu.lab.repository.*;
 
-public class RepositoryBybbleSort<T> extends RepositorySort<T>{
+public class RepositoryBybbleSort<T> implements RepositorySort<T>{
 	
-	public  Repository<T> Sort(Comparator<T> comparator,Repository<T> rep,int size)
+	public  IRepository<T> Sort(Comparator<T> comparator,IRepository<T> rep,int size)
 	{
-		Repository<T> rep2=rep;
+		IRepository<T> rep2=rep;
 		boolean needIteration = true;
 		while (needIteration) {
 			needIteration = false;
@@ -25,7 +25,7 @@ public class RepositoryBybbleSort<T> extends RepositorySort<T>{
 		return rep2;
 	}
 	
-	private void swap(Repository<T> rep, int index1, int index2) {
+	private void swap(IRepository<T> rep, int index1, int index2) {
 		T tmp = rep.get(index1);
 		rep.set(index1, rep.get(index2));
 		rep.set(index2,tmp);
