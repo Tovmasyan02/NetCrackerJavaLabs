@@ -3,13 +3,18 @@
   <groupId>Bank</groupId>
   <artifactId>Bank</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>8</maven.compiler.source>
     <maven.compiler.target>8</maven.compiler.target>
   </properties>
-  
+  <dependencies>
+  	  <dependency>
+    	<groupId>org.slf4j</groupId>
+    	<artifactId>slf4j-jdk14</artifactId>
+    	<version>1.7.13</version>
+	</dependency>	
+  </dependencies>
   <build>
     <plugins>
       <plugin><!-- Use latest to build recent Java applications -->
@@ -17,6 +22,5 @@
         <version>3.8.1</version>
       </plugin>
     </plugins>
-  </build>
-  
+  </build>  
 </project>

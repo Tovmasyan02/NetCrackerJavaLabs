@@ -1,4 +1,7 @@
-package com.poortoys.examples;
+package com.poortoys.examples.Classes;
+
+import com.poortoys.examples.Enums.ActionsEnum;
+import com.poortoys.examples.Enums.ClientStatus;
 
 public class Client {
  

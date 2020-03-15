@@ -1,9 +1,19 @@
-package com.poortoys.examples;
+package com.poortoys.examples.Classes;
 import java.util.*;
 import java.util.concurrent.CountDownLatch;
 import java.util.stream.Collectors;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.poortoys.examples.Enums.ActionsEnum;
+import com.poortoys.examples.Enums.ClientStatus;
+import com.poortoys.examples.Enums.StatusEnum;
+
 public class Bank {
+	
+	 
+	Logger logger = LoggerFactory.getLogger("Bank");
 	
 	//счет банка
 	private long score;
@@ -21,7 +31,7 @@ public class Bank {
 	// конструктор класса 
 	public Bank()
 	{
-		System.out.println("Консруктор банка");
+		logger.info("Создается банк");
 		this.score=1000;
 		cashiers.add(new Cashier(this,1));
 		cashiers.add(new Cashier(this,2));
@@ -34,18 +44,18 @@ public class Bank {
 	public void BankStartWork()
 	{
 		this.cashiers.stream().forEach(c->c.startWork());
-		System.out.println("Банк работает");
+		logger.info("Банк начал работу");
 	}
 	
 	public void addClient(Client client)
 	{
 		this.clients.add(client);
 		boolean b=this.SearchCashierForClient(client);
-		System.out.println("Новый клиент - "+client.toString());
+		logger.info("Новый Клиент {}",client);
 		if(b)
-			System.out.println("Нашли кассира для клиента -" + client.toString());
+			logger.info("Нашли кассира для клиента - {}" + client);
 		else 
-			System.out.println("Не Нашли кассира для клиента -" + client.toString());
+			logger.info("Не Нашли кассира для клиента -" + client);
 		
 	}
 	
@@ -61,7 +71,7 @@ public class Bank {
 	public synchronized  void  RefreshfreeCashiers()
 	{
 		this.setFreeCashiers(cashiers.stream().filter(c->c.status==StatusEnum.FREE).collect(Collectors.toList()));
-		System.out.println("Обновление кассиров");
+		logger.info("Обновление кассиров");
 	}
 	
 	
@@ -69,7 +79,7 @@ public class Bank {
 	public synchronized  void RefreshWaitingClients()
 	{
 		this.setClients(this.clients.stream().filter(c->c.getClientStatus()==ClientStatus.Wait).collect(Collectors.toList()));
-		System.out.println("обновление клиентов");
+		logger.info("обновление клиентов");
 	}
 	
 	
@@ -78,7 +88,7 @@ public class Bank {
 		if(client.getAction()==ActionsEnum.WITHDRAW)
 			if(this.getScore()<client.getPrice())
 			{
-				System.out.println("checkScore - Неуспешно");
+				logger.warn("checkScore - Неуспешно");
 				return false;
 			}
 		return true;
@@ -86,7 +96,7 @@ public class Bank {
 	
 	
 	public synchronized  boolean SearchClientForCashier(Cashier cashier) {
-		System.out.println("Нашли клиента для кассира  "+cashier.id);
+		logger.info("Нашли клиента для кассира -{} ",cashier.id);
 		if(this.clients.size()==0)
 			return false;
 		for(Client c:this.clients)
@@ -109,11 +119,12 @@ public class Bank {
 	{
 		if(!this.checkScore(client))
 			return false;
-		System.out.println("ищем кассира для клиента -" + client.toString());
+		logger.info("ищем кассира для клиента - {}",client);
 		if(this.freeCashiers.size()!=0)
 		{
 			freeCashiers.get(0).setClient(client);
-			System.out.println("Нашли кассира для клиента -" + client.toString()+"kassir - "+freeCashiers.get(0).id);
+			logger.info("Нашли кассира для клиента -" + client.toString()+"kassir - "+freeCashiers.get(0).id);
+			logger.info("Число свободных кассиров - {}",this.getFreeCashiers().size());
 			this.RefreshfreeCashiers();
 			return true;
 		}
@@ -139,18 +150,18 @@ public class Bank {
 	}
 	
 	public synchronized void putMoney(Long money) {
-		System.out.println("Касса - "+this.score);
-		System.out.println("Put Money - "+money);
+		logger.info("Касса - "+this.score);
+		logger.info("Put Money - "+money);
 		score+=money;
-		System.out.println("Касса после PUT - "+this.score);
+		logger.info("Касса после PUT - "+this.score);
 	}
 	
 	public synchronized void withdrawMoney(Long money)
 	{
-		System.out.println("Касса - "+this.score);
-		System.out.println("withDraw Money - "+money);
+		logger.info("Касса - "+this.score);
+		logger.info("withDraw Money - "+money);
 		score-=money;
-		System.out.println("Касса после Withdraw - "+this.score);
+		logger.info("Касса после Withdraw - "+this.score);
 	}
 	
 

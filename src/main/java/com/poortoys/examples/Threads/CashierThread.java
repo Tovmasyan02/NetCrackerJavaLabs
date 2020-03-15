@@ -1,8 +1,17 @@
-package com.poortoys.examples;
+package com.poortoys.examples.Threads;
 import java.util.*;
 import java.util.concurrent.CountDownLatch;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.poortoys.examples.Classes.Cashier;
+import com.poortoys.examples.Enums.ActionsEnum;
+import com.poortoys.examples.Enums.StatusEnum;
+
 public class CashierThread implements Runnable {
+	
+	Logger logger = LoggerFactory.getLogger("CashierThread");
 	
 	private Cashier casheir;
 	public CashierThread(Cashier c)
@@ -31,7 +40,7 @@ public class CashierThread implements Runnable {
 				// меняем статус на FREE
 				casheir.status=StatusEnum.FREE;
 				
-				// обновляем список свободных сотрудников
+				// обновляем список свободных кассиров
 				this.casheir.bank.RefreshfreeCashiers();
 				
 				// чтобы ждать нового клиента
@@ -50,7 +59,8 @@ public class CashierThread implements Runnable {
 	
 	private void action()
 	{
-		System.out.println("Действие");
+		logger.info("Действие");
+		
 		if(casheir.client.getAction()==ActionsEnum.PUT)
 		{
 			this.casheir.bank.putMoney(this.casheir.client.getPrice());

@@ -1,6 +1,11 @@
-package com.poortoys.examples;
+package com.poortoys.examples.Threads;
 
 import java.util.*;
+
+import com.poortoys.examples.*;
+import com.poortoys.examples.Classes.Bank;
+import com.poortoys.examples.Classes.Client;
+import com.poortoys.examples.Enums.ActionsEnum;
 
 public class ClientGenerateThread implements Runnable {
 
@@ -32,7 +37,7 @@ public class ClientGenerateThread implements Runnable {
 		client.setPrice((long)rnd.nextInt(1000));
 		client.setTime((long)rnd.nextInt(15000));
 		if(rnd.nextInt(2)==1)
-			client.setAction(ActionsEnum.PUT);
+			client.setAction(ActionsEnum.WITHDRAW);
 		else
 			client.setAction(ActionsEnum.WITHDRAW);
 		return client;

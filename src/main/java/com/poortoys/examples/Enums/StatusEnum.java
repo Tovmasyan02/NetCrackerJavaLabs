@@ -1,4 +1,4 @@
-package com.poortoys.examples;
+package com.poortoys.examples.Enums;
 
 public enum StatusEnum {
 
