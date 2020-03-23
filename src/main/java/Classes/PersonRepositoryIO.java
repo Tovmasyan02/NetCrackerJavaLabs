@@ -9,26 +9,35 @@ import java.io.FileReader;
 import java.math.BigDecimal;
 import java.util.*;
 import java.util.stream.Stream;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDate;
 public class PersonRepositoryIO<T> {
 	
-
+	private static Logger logger = LoggerFactory.getLogger(PersonRepositoryIO.class);
+	
 	@SuppressWarnings("deprecation")
 	public static IRepository<IPerson> readAllDataFromCSV(String path) 
 	{ 
+		logger.trace("CSV to IRepository, file path - {}",path);
 		IRepository<IPerson> rep=new Repository<IPerson>();
 		try
 		{
 			FileReader filereader = new FileReader(path); 
 			ArrayList<IDivision> divisions=new ArrayList<IDivision>();
+			
 			CSVReader reader = new CSVReader(filereader, ';');
 			try { 
 				List<String[]> allData = reader.readAll();
 				DateTimeFormatter dtf = DateTimeFormatter.ofPattern("d.MM.yyyy");
+				
 				for(int i=1;i<allData.size();i++)
 				{	
 					IDivision newDivision=null;
+					
 					for(IDivision division:divisions)
 					{
 						if(division.getName().equals(allData.get(i)[4]))
@@ -39,6 +48,7 @@ public class PersonRepositoryIO<T> {
 					}
 					if(newDivision==null)
 					{
+						logger.trace("Division is null");
 						newDivision=new Division(i,allData.get(i)[4]);
 						divisions.add(newDivision);
 					}
@@ -54,8 +64,7 @@ public class PersonRepositoryIO<T> {
 				}
 			   } 			
 			catch (Exception e) { 
-				e.printStackTrace(); 
-				e.getClass();
+				logger.warn(e.getMessage());
 			}
 			finally
 			{
@@ -64,7 +73,7 @@ public class PersonRepositoryIO<T> {
 		}
 		catch(Exception e)
 		{
-			e.printStackTrace(); 
+			logger.warn(e.getMessage());
 		}
 		return rep;
 	} 

@@ -1,5 +1,4 @@
 package NetCracker_Lab3;
-import Classes.LabFactory;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Comparator;
@@ -29,7 +28,6 @@ private static IRepository<IPerson> myRepository;
 		Person p7=new Person(7,"Name7");
 		Person p8=new Person(8,"Name8");
 		Person p9=new Person(9,"Name9");
-		LabFactory lf=new LabFactory();
 		IRepository<IPerson> r=lf.<IPerson>createRepositoryX();
 	//	IRepository<IPerson> r1=(IRepository<IPerson>) lf.createRepository(Repository.getClass());
 		r.add(p1);
