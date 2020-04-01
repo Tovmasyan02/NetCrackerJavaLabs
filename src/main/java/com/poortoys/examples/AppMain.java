@@ -1,7 +1,7 @@
 package com.poortoys.examples;
 
 import com.Sort.ShellSort;
-import Threads.MultithreadedShellSort;
+import com.Threads.MultithreadedShellSort;
 
 public class AppMain {
 

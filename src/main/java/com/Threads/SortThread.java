@@ -1,4 +1,4 @@
-package Threads;
+package com.Threads;
 
 import com.Interfaces.Sort;
 
